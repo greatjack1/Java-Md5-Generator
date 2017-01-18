@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package timebackup;
+
+package Md5Generator;
 
 /**
  *
@@ -19,7 +15,7 @@ import java.nio.file.Path;
  * The point of this class it to compute the MD5 sum of a file
  */
 public class Md5 {
-
+// two instance variables, one to store the file path and one to store the MD5 sum
     private String path;
     private String md5Sum;
 
@@ -39,9 +35,11 @@ public class Md5 {
             MessageDigest md = MessageDigest.getInstance("MD5");
             //create a input stream to get the bytes of the file
             Path path = Paths.get(filePath);
+            //read the bytes from the file and put them in the message digest
             md.update(Files.readAllBytes(path));
+            //digest the bytes and generate an MD5 sum thats stored in an array of bytes
             byte[] hash = md.digest();
-
+            //convert the byte array to its hex counter parts and store it as a string
             md5Sum = toHexString(hash);
         } catch (IOException | NoSuchAlgorithmException ex) {
             ex.printStackTrace();
